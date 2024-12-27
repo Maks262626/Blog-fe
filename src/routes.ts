@@ -10,7 +10,7 @@ export const routes = {
     FEED: '/feed',
     FAVOURITES: '/favourites',
     SETTINGS: '/settings',
-    ARTICLES: '/article'
+    ARTICLES: '/articles'
   },
   PRIVATE: {},
   API: {},
