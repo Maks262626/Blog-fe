@@ -1,17 +1,13 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import { ArticleProps } from "../models/Article.ts";
+import { routes } from "../routes";
 
-interface ArticleProps {
-  id: string;
-  title: string;
-  summary: string;
-}
 
-const Article: React.FC<ArticleProps> = ({ id, title, summary }) => {
+const Article = ({ id, title, summary }: ArticleProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/article/${id}`);
+    navigate(`${routes.PUBLIC.ARTICLES}/${id}`);
   };
 
   return (

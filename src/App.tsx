@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path={routes.PUBLIC.HOME} element={<Home />} />
           <Route path={routes.PUBLIC.FEED} element={<Feed />} />
-          <Route path="/article/:id" element={<FullArticle />} />
+          <Route path={`${routes.PUBLIC.ARTICLES}/:id`} element={<FullArticle />} />
         </Routes>
       </Box>
     </Box>
