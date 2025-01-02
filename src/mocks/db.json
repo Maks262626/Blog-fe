@@ -1,0 +1,7 @@
+{
+  "articles": [
+    { "id": "1", "title": "Article 1", "summary": "This is the summary of article 1" },
+    { "id": "2", "title": "Article 2", "summary": "This is the summary of article 2" },
+    { "id": "3", "title": "Article 3", "summary": "This is the summary of article 3" }
+  ]
+}

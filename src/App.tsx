@@ -5,6 +5,7 @@ import Feed from "./pages/Feed";
 import SideBar from "./components/Drawer";
 import { Box } from "@mui/material";
 import { sidebarWidth } from "./constants";
+import FullArticle from "./pages/FullArticle";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path={routes.PUBLIC.HOME} element={<Home />} />
           <Route path={routes.PUBLIC.FEED} element={<Feed />} />
+          <Route path={`${routes.PUBLIC.ARTICLES}/:id`} element={<FullArticle />} />
         </Routes>
       </Box>
     </Box>
