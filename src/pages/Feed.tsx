@@ -1,4 +1,4 @@
-import ArticleList from '../components/ArticleList.tsx'
+import ArticleList from '../components/ArticleList.tsx';
 
 const Feed = () => {
   return (
@@ -7,6 +7,6 @@ const Feed = () => {
       <ArticleList />
     </div>
   );
-}
+};
 
 export default Feed;

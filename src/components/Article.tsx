@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { ArticleProps } from "../models/Article.ts";
-import { routes } from "../routes";
+import { useNavigate } from 'react-router-dom';
 
+import { ArticleProps } from '../models/Article.ts';
+import { routes } from '../routes';
 
 const Article = ({ id, title, summary }: ArticleProps) => {
   const navigate = useNavigate();
@@ -11,7 +11,11 @@ const Article = ({ id, title, summary }: ArticleProps) => {
   };
 
   return (
-    <div className="article" onClick={handleClick} style={{ cursor: "pointer", border: "1px solid #ccc", padding: "10px", margin: "10px 0" }}>
+    <div
+      className="article"
+      onClick={handleClick}
+      style={{ cursor: 'pointer', border: '1px solid #ccc', padding: '10px', margin: '10px 0' }}
+    >
       <h2>{title}</h2>
       <p>{summary}</p>
     </div>

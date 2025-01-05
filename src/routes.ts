@@ -1,6 +1,6 @@
-import HomeIcon from '@mui/icons-material/Home';
-import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import ExploreIcon from '@mui/icons-material/Explore';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { SvgIconProps } from '@mui/material';
 
@@ -10,11 +10,11 @@ export const routes = {
     FEED: '/feed',
     FAVOURITES: '/favourites',
     SETTINGS: '/settings',
-    ARTICLES: '/articles'
+    ARTICLES: '/articles',
   },
   PRIVATE: {},
   API: {},
-}
+};
 
 interface SidebarLink {
   icon: React.ElementType<SvgIconProps>;
@@ -26,21 +26,21 @@ export const sidebarLinks: SidebarLink[] = [
   {
     icon: HomeIcon,
     label: 'Home',
-    route: routes.PUBLIC.HOME
+    route: routes.PUBLIC.HOME,
   },
   {
-    icon: DynamicFeedIcon,
+    icon: ExploreIcon,
     label: 'feed',
-    route: routes.PUBLIC.FEED
+    route: routes.PUBLIC.FEED,
   },
   {
     icon: FavoriteBorderIcon,
     label: 'favourites',
-    route: routes.PUBLIC.FAVOURITES
+    route: routes.PUBLIC.FAVOURITES,
   },
   {
     icon: SettingsIcon,
     label: 'settings',
-    route: routes.PUBLIC.SETTINGS
-  }
-]
+    route: routes.PUBLIC.SETTINGS,
+  },
+];

@@ -2,14 +2,20 @@ import { createTheme } from '@mui/material';
 
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark',
-    background: {
-      default: '#121212',
-      paper: '#1e1e1e', 
+    primary: {
+      main: '#FFFD02',
     },
     secondary: {
-      main: '#1e1e2d'
-    }
+      main: '#1A1A1A',
+    },
+    background: {
+      default: '#FAFAFA',
+      paper: '#282828',
+    },
+    text: {
+      primary: '#FAFAFA',
+      secondary: '#FFFD02',
+    },
   },
   typography: {
     fontFamily: '"Roboto", "Arial", sans-serif',
