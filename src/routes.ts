@@ -1,9 +1,9 @@
 import ExploreIcon from '@mui/icons-material/Explore';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import HomeIcon from '@mui/icons-material/Home';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { SvgIconProps } from '@mui/material';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
 export const routes = {
   PUBLIC: {
@@ -50,6 +50,6 @@ export const sidebarLinks: SidebarLink[] = [
   {
     icon: PermIdentityIcon,
     label: 'profile',
-    route: routes.PUBLIC.PROFILE
-  }
+    route: routes.PUBLIC.PROFILE,
+  },
 ];

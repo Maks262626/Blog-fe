@@ -18,5 +18,4 @@ export const styles = {
     width: '100%',
   },
   account: { display: 'flex', alignItems: 'center', mt: 2, justifyContent: 'center', gap: 2 },
-  
-}
+};

@@ -1,22 +1,28 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { routes } from '@/routes';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Box, Button, Paper, TextField, Typography } from '@mui/material';
 import { z } from 'zod';
-import { registerValidation } from '@/utils/zod-validation';
-import { routes } from '@/routes';
-import axiosInstance from '@/utils/axios';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { login, logout } from '@/redux/userSlice';
+
 import ImageUploader from '@/components/ImageUploader/ImageUploader';
+import Loader from '@/components/Loader';
+
+import axiosInstance from '@/utils/axios';
+import { registerValidation } from '@/utils/zod-validation';
+
+import { login, logout } from '@/redux/userSlice';
+
 import { styles } from './styles.mui';
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(false);
   const [file, setFile] = useState<File | null>(null);
 
   type RegisterValidationType = z.infer<typeof registerValidation>;
@@ -30,15 +36,20 @@ const SignUp = () => {
       email: '',
       password: '',
       confirm: '',
-    }
+    },
   });
-  const { control, handleSubmit, formState: { isValid, errors } } = formMethods;
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid, errors },
+  } = formMethods;
   const onSubmit = async (data: RegisterValidationType) => {
     try {
+      setIsLoading(true);
       let avatarUrl = null;
       if (file) {
         const formData = new FormData();
-        formData.append("images", file);
+        formData.append('images', file);
         const { data: images } = await axiosInstance.post('/api/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -49,31 +60,28 @@ const SignUp = () => {
       const res = await axiosInstance.post('/api/auth/register', { ...data, avatarUrl });
       const { uid } = res.data.userCreds.user;
       const { data: user } = await axiosInstance.get(`/api/users/${uid}`);
-  
+
       dispatch(login(user));
       navigate(routes.PUBLIC.HOME);
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       dispatch(logout());
     }
   };
-  
 
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
-    <Paper
-      component="form"
-      onSubmit={handleSubmit(onSubmit)}
-      elevation={3}
-      sx={styles.paper}
-    >
+    <Paper component="form" onSubmit={handleSubmit(onSubmit)} elevation={3} sx={styles.paper}>
       <Typography variant="h4" gutterBottom>
         Sign Up
       </Typography>
       <Typography variant="body1" gutterBottom>
         Welcome to WordSmith
       </Typography>
-      <Box
-        sx={styles.controllerWraper}
-      >
+      <Box sx={styles.controllerWraper}>
         <ImageUploader setFile={setFile} />
         <Controller
           name="firstName"
@@ -162,13 +170,7 @@ const SignUp = () => {
           )}
         />
       </Box>
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        disabled={!isValid}
-        sx={styles.btn}
-      >
+      <Button type="submit" variant="contained" color="primary" disabled={!isValid} sx={styles.btn}>
         Sign Up
       </Button>
       <Box sx={styles.account}>

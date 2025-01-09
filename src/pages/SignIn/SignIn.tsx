@@ -1,18 +1,26 @@
-import { loginValidation } from "@/utils/zod-validation";
-import { Controller, useForm } from "react-hook-form";
-import { z } from "zod";
+import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { routes } from '@/routes';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Paper, Typography, Box, TextField, Button } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
-import { routes } from "@/routes";
-import axiosInstance from "@/utils/axios";
-import { useDispatch } from "react-redux";
-import { login, logout } from "@/redux/userSlice";
-import { styles } from "./styles.mui";
+import { Box, Button, Paper, TextField, Typography } from '@mui/material';
+import { z } from 'zod';
+
+import Loader from '@/components/Loader';
+
+import axiosInstance from '@/utils/axios';
+import { loginValidation } from '@/utils/zod-validation';
+
+import { login, logout } from '@/redux/userSlice';
+
+import { styles } from './styles.mui';
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   type LoginValidationType = z.infer<typeof loginValidation>;
   const formMethods = useForm<LoginValidationType>({
@@ -21,35 +29,38 @@ const SignIn = () => {
     defaultValues: {
       email: '',
       password: '',
-    }
+    },
   });
-  const { control, handleSubmit, formState: { isValid, errors } } = formMethods;
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid, errors },
+  } = formMethods;
 
   const onSubmit = async (data: LoginValidationType) => {
     try {
+      setIsLoading(true);
       const res = await axiosInstance.post('/api/auth/login', data);
       const { uid } = res.data.userCreds.user;
       const { data: user } = await axiosInstance.get(`/api/users/${uid}`);
       dispatch(login(user));
       navigate(routes.PUBLIC.HOME);
+      setIsLoading(false);
     } catch (err) {
       dispatch(logout());
+      setIsLoading(false);
     }
   };
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
-    <Paper
-      component="form"
-      onSubmit={handleSubmit(onSubmit)}
-      elevation={3}
-      sx={styles.paper}
-    >
+    <Paper component="form" onSubmit={handleSubmit(onSubmit)} elevation={3} sx={styles.paper}>
       <Typography variant="h4" gutterBottom>
         Sign In
       </Typography>
 
-      <Box
-        sx={styles.inputsWrapper}
-      >
+      <Box sx={styles.inputsWrapper}>
         <Controller
           name="email"
           control={control}
@@ -79,15 +90,8 @@ const SignIn = () => {
             />
           )}
         />
-
       </Box>
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        disabled={!isValid}
-        sx={styles.btn}
-      >
+      <Button type="submit" variant="contained" color="primary" disabled={!isValid} sx={styles.btn}>
         Sign In
       </Button>
       <Box sx={styles.account}>
@@ -105,6 +109,6 @@ const SignIn = () => {
       </Box>
     </Paper>
   );
-}
+};
 
 export default SignIn;

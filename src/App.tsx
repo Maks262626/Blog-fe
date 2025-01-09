@@ -5,15 +5,13 @@ import { Box } from '@mui/material';
 import Feed from './pages/Feed';
 import FullArticle from './pages/FullArticle';
 import Home from './pages/Home';
-
-import { routes } from './routes';
-import SignUp from './pages/SignUp/SignUp';
 import SignIn from './pages/SignIn/SignIn';
-import BaseLayout from './pages/layouts/BaseLayout';
+import SignUp from './pages/SignUp/SignUp';
 import AuthLayout from './pages/layouts/AuthLayout';
+import BaseLayout from './pages/layouts/BaseLayout';
+import { routes } from './routes';
 
 function App() {
-
   return (
     <Box sx={{ height: '100%', position: 'relative', backgroundColor: 'secondary.main' }}>
       <Routes>

@@ -17,5 +17,5 @@ export const styles = {
     mt: 3,
     width: '100%',
   },
-  account: { display: 'flex', alignItems: 'center', mt: 2, justifyContent: 'center', gap: 2 }
-}
+  account: { display: 'flex', alignItems: 'center', mt: 2, justifyContent: 'center', gap: 2 },
+};
