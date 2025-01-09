@@ -16,9 +16,23 @@ const darkTheme = createTheme({
       primary: '#FAFAFA',
       secondary: '#FFFD02',
     },
+    action: {
+      disabledBackground: 'rgba(255, 253, 2, 0.3)',
+      disabled: 'rgba(255, 253, 2, 0.7)',
+    }
   },
   typography: {
     fontFamily: '"Roboto", "Arial", sans-serif',
   },
+  components: {
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: '#FAFAFA',
+        },
+      },
+    },
+  },
 });
+
 export default darkTheme;

@@ -3,6 +3,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { SvgIconProps } from '@mui/material';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
 export const routes = {
   PUBLIC: {
@@ -11,6 +12,9 @@ export const routes = {
     FAVOURITES: '/favourites',
     SETTINGS: '/settings',
     ARTICLES: '/articles',
+    PROFILE: '/profile',
+    LOGIN: '/login',
+    REGISTER: '/register',
   },
   PRIVATE: {},
   API: {},
@@ -43,4 +47,9 @@ export const sidebarLinks: SidebarLink[] = [
     label: 'settings',
     route: routes.PUBLIC.SETTINGS,
   },
+  {
+    icon: PermIdentityIcon,
+    label: 'profile',
+    route: routes.PUBLIC.PROFILE
+  }
 ];
