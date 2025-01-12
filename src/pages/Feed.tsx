@@ -1,9 +1,8 @@
-import ArticleList from '../components/ArticleList.tsx';
+import ArticleList from '../components/Article/ArticleList.tsx';
 
 const Feed = () => {
   return (
     <div>
-      <h1>Feed</h1>
       <ArticleList />
     </div>
   );

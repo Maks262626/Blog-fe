@@ -19,6 +19,7 @@ export const styles = {
       bottom: 0,
       left: 0,
       display: { sm: 'flex', md: 'none' },
+      zIndex: 100,
     },
     inner: { width: '100%', py: 2 },
     stack: { display: 'flex', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-around' },

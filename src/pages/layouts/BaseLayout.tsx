@@ -17,9 +17,18 @@ const BaseLayout = () => {
   }
 
   return (
-    <Box sx={{ height: '100dvh', pl: { xs: 0, md: `${sidebarWidth}px` }, pt: 8 }}>
+    <Box sx={{ height: '100dvh', pl: { xs: 0, md: `${sidebarWidth}px` } }}>
       <SideBar />
-      <Outlet />
+      <Box
+        sx={{
+          flexGrow: 1,
+          overflowY: 'auto',
+          pt: 8,
+          backgroundColor: 'secondary.main',
+        }}
+      >
+        <Outlet />
+      </Box>
     </Box>
   );
 };

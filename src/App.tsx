@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Box } from '@mui/material';
 
 import Feed from './pages/Feed';
-import FullArticle from './pages/FullArticle';
+import FullArticle from './pages/FullArticle/FullArticle';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
